@@ -1,0 +1,65 @@
+var express = require('express');
+var router = express.Router();
+var mongoose = require('mongoose');
+var SDEEntry = mongoose.model('sdeweekly');
+var account = mongoose.model('account');
+
+router.post('/SDE', function (req, res) {
+	console.log("Saving to mongo");
+    var input = req.body;
+    var entry = new SDEEntry();
+    console.log(input.deliverableName);
+    entry.weekOf = input.weekOf;	
+    entry.projectName = input.projectName;
+    entry.serviceType = input.serviceType;
+    entry.deliverableName = input.deliverableName;
+    entry.noOfDeliverables = input.noOfDeliverables;
+    entry.description = input.description;
+    entry.totalIssues = input.totalIssues;
+    entry.totalIssueComments = input.totalIssueComments;
+    entry.criticalIssues = input.criticalIssues;
+    entry.criticalIssueComments = input.criticalIssueComments;
+    entry.presentationErrors = input.presentationErrors;
+    entry.presentationErrorComments = input.presentationErrorComments;
+    entry.communicationLapse = input.communicationLapse;
+    entry.lapseComments = input.lapseComments;
+    entry.deadlinesMissed = input.deadlinesMissed;
+    entry.deadlineMissComments = input.deadlineMissComments;
+    entry.docper = input.docper;
+    entry.docComments = input.docComments;
+    entry.findingsper = input.findingsper;
+    entry.findings = input.findings;
+    entry.noOfInsights = input.noOfInsights;
+    entry.businessInsight = input.businessInsight;
+    entry.businessMetric = input.businessMetric;
+    entry.comments = input.comments;
+    entry.dollarValue = input.dollarValue;
+    entry.clientSatisfaction = input.clientSatisfaction;
+    entry.negativeReviews = input.negativeReviews;
+    entry.negativeFeedback = input.negativeFeedback;
+    entry.generalComments = input.generalComments;
+    console.log(entry.deliverableName);
+    entry.save(function (err, entry) {
+        if (err) {
+            return res.send(500, err);
+        }
+	console.log(entry);
+        return res.json(entry);
+    });
+	console.log(res.body);
+});
+
+router.get('/getAccounts', function (req, res) {
+	console.log("getting accounts");
+	account.find(function (err, s) {
+		if (err) {
+			return console.error(err);
+		}
+		return res.send(s);
+	});	
+});
+
+//router.get('/getProjects', function (req, res) {     
+//});
+
+module.exports = router;

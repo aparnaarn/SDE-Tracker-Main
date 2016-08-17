@@ -1,0 +1,271 @@
+<!-- side navigation -->
+<form class="form-horizontal" ng-submit="submit()">
+	<div class="container col-lg-12 bg-dark" style="padding-top:20px">
+    <div class="form-group">                 
+        <label for="clusterName" class="col-lg-1 control-label">Cluster</label>
+        <div class="col-lg-2">
+			
+            <select id="clusterName" placeholder='Select you cluster'
+                    ng-model="coast"
+                    ng-options="i for i in clusters"
+		    ng-change="getAccounts()"
+                    class="form-control">
+			<option value="" disabled selected>Select your Cluster</option>
+            </select>
+        </div>
+		<label for="accountName" class="col-lg-1 control-label">Account</label>
+        <div class="col-lg-2">
+			
+            <select id="accountName" placeholder='Select an Account'
+                    ng-model="account"
+                    ng-options="i.accountName for i in accounts"
+		    ng-change="getProjects()"
+                    class="form-control">
+			<option value="" disabled selected>Select an Account</option>
+            </select>
+        </div>
+        <label for="projectName" class="col-lg-1 control-label">Project</label>
+        <div class="col-lg-2">
+            <select id="projectName" 
+                    ng-model="projectName" 
+                    ng-options="j for j in account.projects" 
+                    class="form-control">
+			<option value="" disabled selected>Select a Project</option>
+            </select>
+        </div>
+		<label for="entryDate" class="col-lg-1 control-label">Week of</label>
+		<div class="col-lg-2">
+	    <select id="entryDate" 
+		    ng-model="selectedWeek"
+                    ng-options="k for k in fridays"
+                    class="form-control">
+			<option value="" disabled selected>Select a Date</option>
+            </select>            
+        </div> 
+    </div>   
+</div>
+
+<!-- form start -->
+<div class="col-lg-12">
+    <h3  class="text-center">Week ending {{selectedWeek}} - {{account.accountName}} {{projectName}}</h3>
+    <hr class="small">
+	<section id ="deliverable">
+		<h3 class="section-heading text-center">Deliverable</h3>		
+		<div class="form-group">
+			<label for="serviceType" class="control-label col-lg-3">Service Type</label>
+			<div class="col-lg-3">
+				<select id="serviceType" 
+						ng-model="serviceType.service" 
+						ng-options="option.name for option in serviceType.availableOptions track by option.id" 
+						class="form-control">                  
+				</select>
+			</div>
+
+			<label for="deliverableName" class="control-label col-lg-1">Name</label>
+			<div class="col-lg-5">
+				<input ng-model="entry.deliverableName" type="text" class="form-control" id="deliverableName" placeholder="Deliverable Name">
+			</div> 
+		</div>   
+
+		<div class="form-group">        
+			<label for="deliverableDescription" class="control-label col-lg-3">Description</label>
+			<div class="col-lg-9">
+				<textarea ng-model="entry.description" rows="2" class="form-control" id="deliverableDescription" placeholder="Deliverable Description/Status"></textarea>
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<label for="noOfDeliverables" class="control-label col-lg-3">No of Deliverables</label>
+			<div class="col-lg-3">
+				<input ng-model="entry.noOfDeliverables" type="text" class="form-control" id="noOfDeliverables" placeholder="Number of Deliverables"/>
+			</div>        
+		</div> 
+	</section>
+	<hr>
+	
+	<section id ="quality">
+		<h3 class="section-heading text-center">Quality</h3>			
+		<div class="form-group">
+			<label for="issues" class="control-label col-lg-3">Total Issues</label>
+			<div class="col-lg-9">
+				<input ng-model="entry.totalIssues" type="text" class="form-control" id="issues" placeholder="Total Issues">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="issueComments" class="control-label col-lg-3">Total Issues Comments </label>
+			<div class="col-lg-9">
+				<input ng-model="entry.totalIssueComments" type="text" class="form-control" id="issueComments" placeholder="Total Issues Comments">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="criticalIssues" class="control-label col-lg-3">Critical Issues</label>
+			<div class="col-lg-9">
+				<input ng-model="entry.criticalIssues" type="text" class="form-control" id="criticalIssues" placeholder="Critical Issues">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="criticalIssueComments" class="control-label col-lg-3">Critical Issues Comments </label>
+			<div class="col-lg-9">
+				<input ng-model="entry.criticalIssueComments" type="text" class="form-control" id="criticalIssueComments" placeholder="Critical Issues Comments">
+			</div>
+		</div>  
+
+		 <div class="form-group">
+			<label for="presentationErrors" class="control-label col-lg-3">Presentation Errors</label>
+			<div class="col-lg-9">
+				<input ng-model="entry.presentationErrors" type="text" class="form-control" id="presentationErrors">
+			</div>
+		</div>
+
+		 <div class="form-group">
+			<label for="presentationErrorComments" class="control-label col-lg-3">Presentation Error Comments</label>
+			<div class="col-lg-9">
+				<input ng-model="entry.presentationErrorComments" type="text" class="form-control" id="presentationErrorComments">
+			</div>
+		</div>
+
+		 <div class="form-group">
+			<label for="communicationLapse" class="control-label col-lg-3"># Communication Lapse</label>
+			<div class="col-lg-9">
+				<input ng-model="entry.communicationLapse" type="text" class="form-control" id="communicationLapse">
+			</div>
+		</div>
+
+		 <div class="form-group">
+			<label for="lapseComments" class="control-label col-lg-3">Communication Lapse Comments</label>
+			<div class="col-lg-9">
+				<input ng-model="entry.lapseComments" type="text" class="form-control" id="lapseComments">
+			</div>
+		</div>
+		</section>
+	<hr> 
+		
+	<section id ="serviceLevel">
+		<h3 class="section-heading text-center">Service Level</h3>
+    <div class="form-group">
+        <label for="deadlinesMissed" class="control-label col-lg-3"># Deadlines Missed </label>
+        <div class="col-lg-9">
+            <input ng-model="entry.deadlinesMissed" type="text" class="form-control" id="deadlinesMissed">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="deadlineMissComments" class="control-label col-lg-3">Deadline Miss Comments </label>
+        <div class="col-lg-9">
+            <input ng-model="entry.deadlineMissComments" type="text" class="form-control" id="deadlineMissComments">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="doc%" class="control-label col-lg-3">Documentation (%)</label>
+        <div class="col-lg-9">
+            <input ng-model="entry.docper" type="text" class="form-control" id="doc%">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="docComments" class="control-label col-lg-3">Documentation Comments</label>
+        <div class="col-lg-9">
+            <input ng-model="entry.docComments" type="text" class="form-control" id="docComments">
+        </div>
+    </div>
+   </section>
+	<hr> 
+		
+	<section id ="clientImpact">
+		<h3 class="section-heading text-center">Client Impact</h3>
+	<div class="form-group">
+        <label for="findings%" class="control-label col-lg-3">Findings & Observation (%)</label>
+        <div class="col-lg-9">
+            <input ng-model="entry.findingsper" type="text" class="form-control" id="findings%">
+        </div>
+    </div>
+    
+     <div class="form-group">
+        <label for="findings" class="control-label col-lg-3">Findings & Observation Comments</label>
+        <div class="col-lg-9">
+            <input ng-model="entry.findings" type="text" class="form-control" id="findings">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="noOfInsights" class="control-label col-lg-3">Business Insights#</label>
+        <div class="col-lg-2">
+            <input ng-model="entry.noOfInsights" type="text" class="form-control" id="noOfInsights" placeholder="Number of Business Insights">
+        </div>
+         <label for="businessInsight" class="control-label col-lg-2">Business Insight</label>
+        <div class="col-lg-5">
+            <textarea ng-model="entry.businessInsight" rows="2" type="text" class="form-control" id="businessInsight" placeholder="Business Insight"></textarea>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="businessMetric" class="control-label col-lg-3">Business Metric</label>
+        <div class="col-lg-2">
+            <input ng-model="entry.businessMetric" type="text" class="form-control" id="businessMetric" placeholder="Business Metric">
+        </div>
+        <label for="comments" class="control-label col-lg-2">Business Metric Comments </label>
+        <div class="col-lg-5">
+            <textarea ng-model="entry.comments" rows="2" class="form-control" id="comments" placeholder="Business Metric Comments"></textarea>
+        </div>
+    </div>
+	<div class="form-group">
+        <label for="dollarValue" class="control-label col-lg-3">Value($)</label>
+        <div class="col-lg-9">
+            <input ng-model="entry.dollarValue" type="text" class="form-control" id="dollarValue">
+        </div>
+    </div>
+    </section>
+	<hr> 
+		
+	<section id ="clientSatisfaction">
+		<h3 class="section-heading text-center">Client Satisfaction</h3>
+	<div class="form-group">
+		<label for="satisfaction" class="control-label col-lg-3"> Client Satisfaction </label>	
+		<div class="col-lg-9">
+			<select id="satisfaction" 
+					ng-options="option.name for option in clientSatisfaction.availableOptions track by option.id"
+					ng-model="clientSatisfaction.satisfaction" 
+					class="form-control">                    
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+        <label for="negativeReviews" class="control-label col-lg-3">#Negative Reviews </label>
+        <div class="col-lg-9">
+            <input ng-model="entry.negativeReviews" type="text" class="form-control" id="negativeReviews">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="negativeFeedback" class="control-label col-lg-3">Negative Feedback </label>
+        <div class="col-lg-9">
+            <input ng-model="entry.negativeFeedback" type="text" class="form-control" id="negativeFeedback">
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <label for="generalComments" class="control-label col-lg-3"> General Client Comments/ Feedback/ Scope for Improvement </label>
+        <div class="col-lg-9">
+            <input ng-model="entry.generalComments" type="text" class="form-control" id="generalComments">
+        </div>
+    </div>   
+	</section>
+	<section class="container col-lg-12">
+		 <div class="col-lg-offset-5 col-lg-2">
+        	<button type="submit" class="btn btn-primary btn-xl wow">Submit</button>
+    	</div>
+	</section>
+	</div>
+	<section id="footer" class="container col-lg-12 bg-dark">
+		<div class="col-lg-12" style="padding:35px">
+		</div>
+		<div class="col-lg-12">
+		<h2 class="section-heading text-center">Latentview Analytics</h2>
+		</div>
+		<div class="col-lg-12" style="padding:35px">
+		</div>
+	</section>
+</form>

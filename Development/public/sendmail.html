@@ -1,0 +1,30 @@
+
+
+<div id="MainWrap" class="container" ng-controller="sendmailController">
+<h2>{{$root.currentProject.account}} - {{$root.currentProject.team}}</h2>
+
+<div class="row" style="padding-bottom:4ex">
+
+<h5>Select a Week</h5>
+
+<div  class="form-group">
+    <div class='input-group date' id='datetimepicker1'>
+        <input type='text' class="form-control" ng-model='entryWeek'/>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+</div>
+
+</div>
+<script type="text/javascript">
+    $('#datetimepicker1').datepicker({
+    	dateFormat: 'dd-mm-yy',
+		minDate: 1,
+        daysOfWeekDisabled: [0,1,2,3,4,6]
+    });
+</script>
+
+<BUTTON id='getEntries' ng-click="getEntries()" style="padding:0.7ex">Get Entries</BUTTON>
+
+</div>

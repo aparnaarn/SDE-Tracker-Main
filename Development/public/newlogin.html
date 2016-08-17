@@ -1,0 +1,57 @@
+
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+<meta name="google-signin-client_id" content="726314796305-i9grdgd06pschpoa7io8r2un5e732dnf.apps.googleusercontent.com"/>
+
+<div id="MainWrap" class="container" ng-controller="loginController">
+	<label id='sinlabel'>Sign in to fill SDE form</label>
+	<div class="g-signin2" data-onsuccess="signIn"></div>
+	<BUTTON id='signout' onclick="signout()">Sign Out</BUTTON>
+	<BUTTON id='fillsde' ng-click="changeView()">Fill SDE</BUTTON>
+</div>
+
+<script type="text/javascript">
+
+	document.getElementById("fillsde").style.display='none'; 
+	document.getElementById("signout").style.display='none';
+
+	var auth2;
+
+	function signIn(googleUser){		
+		var profile = googleUser.getBasicProfile();
+ 		console.log('ID: ' + profile.getId());
+ 		valid = angular.element(document.getElementById('MainWrap')).scope().onSignIn(profile.getName(),profile.getEmail());
+ 		if(valid){
+ 			document.getElementById('sinlabel').innerHTML = "Signed in as "+profile.getName();
+ 			document.getElementById('fillsde').style.display='block'; 
+ 		}
+ 		else{
+ 			var lbl = document.createElement("LABEL");
+ 			var t = document.createTextNode("Your email id is not authorized. Please contact your administrator");
+			lbl.appendChild(t);
+			document.body.appendChild(lbl);
+ 		} 		
+ 		auth2 = gapi.auth2.getAuthInstance();
+ 		console.log(auth2.currentUser.get());
+ 		document.getElementById("signout").style.display='block';
+	}
+
+	function signout(){
+		console.log("in signout");
+		auth2.signOut().then(function(){
+ 			console.log("singedout");
+ 		});
+ 		document.getElementById('sinlabel').innerHTML = "Sign in to fill SDE form";
+ 		document.getElementById('fillsde').style.display='none'; 
+ 		document.getElementById("signout").style.display='none';
+ 	}
+
+ 	function fillsde(){
+
+ 	}
+
+	window.onbeforeunload = function(e){
+ 		gapi.auth.signOut();
+	};
+
+</script>
+

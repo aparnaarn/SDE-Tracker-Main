@@ -1,0 +1,88 @@
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+<meta name="google-signin-client_id" content="726314796305-i9grdgd06pschpoa7io8r2un5e732dnf.apps.googleusercontent.com"/>
+
+
+<div id="MainWrap" class="container" ng-controller="loginController">
+	<div class="container col-lg-12" >
+		<div class="jumbotron text-center row centering">
+			<h1 style = "padding-bottom:2ex">WEEKLY SDE TRACKER</h1>
+		
+		    <div class="form-group row text-center" style = "padding-bottom:2ex">                 
+		        <div class="col-lg-4">
+					
+		            <select id="clusterName" placeholder='Select you cluster'
+		                    ng-model="$root.coast"
+		                    ng-options="i for i in clusters"
+				    		ng-change="getAccounts()"
+		                    class="form-control">
+					<option value="" disabled selected>Select your Cluster</option>
+		            </select>
+		        </div>
+		        <div class="col-lg-4">
+					
+		            <select id="accountName" placeholder='Select an Account'
+		                    ng-model="$root.account"
+		                    ng-options="i for i in accounts"
+		                    ng-change="getProjects()"
+		                    class="form-control">
+					<option value="" disabled selected>Please select a cluster to view accounts</option>
+		            </select>
+		        </div>
+		        <div class="col-lg-4">
+		            <select id="projectName" 
+		                    ng-model="$root.projectName" 
+		                    ng-options="j for j in projects" 
+		                    ng-change = "setlogins()"
+		                    class="form-control">
+					<option value="" disabled selected>Please select an account to view the projects</option>
+		            </select>
+		        </div>		        
+				
+		    </div>   
+
+			<h3 id='sinmsg' style="padding-bottom:2ex">Click to sign-in with your google account</h3>
+
+			<div class="row vertical-center-row" style="padding-bottom:4ex">
+				<div class="text-center col-md-4 col-md-offset-5 g-signin2" data-onsuccess="signIn"></div>
+				
+			</div>		
+
+			<div class="row vertical-center-row" style="padding:2ex">
+				<BUTTON id='signout' onclick="signout()" style="padding:0.7ex">Sign Out</BUTTON>
+				<BUTTON id='fillsde' ng-click="changeView()" style="padding:0.7ex">Fill SDE</BUTTON>
+				<BUTTON id='sendEmail' ng-click="sendMail()" style="padding:0.7ex">Send Email</BUTTON>						
+			</div>		
+
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	var profile;
+	var auth2;
+
+	function signIn(googleUser){		
+		profile = googleUser.getBasicProfile();	
+		auth2 = gapi.auth2.getAuthInstance();
+ 		console.log('ID: ' + profile.getId()); 
+		angular.element(document.getElementById('MainWrap')).scope().setProfile(profile);	
+		document.getElementById('sinmsg').innerHTML = "Signed in as "+profile.getName();	
+	}
+
+	function signout(){
+		console.log("in signout");
+		auth2.signOut().then(function(){
+ 			console.log("singedout");
+ 		});
+ 		angular.element(document.getElementById('MainWrap')).scope().profile = NULL;
+ 		document.getElementById('sinmsg').innerHTML = "Click to sign-in with your google account";
+ 		document.getElementById('fillsde').style.display='none'; 
+ 		document.getElementById("signout").style.display='none';
+ 	}
+
+	window.onbeforeunload = function(e){
+ 		gapi.auth.signOut();
+	};
+
+</script>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+
+	<!-- jQuery -->
+	<script src="javascripts/jquery.js"></script>   
+        
+        <!-- Angular Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js "></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+		
+		<intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
+		
+	<meta name="google-signin-client_id" content="726314796305-i9grdgd06pschpoa7io8r2un5e732dnf.apps.googleusercontent.com"/>
+		        
+        <!-- Scripts from /javascripts folder -->
+        <script src="javascripts/SDE.js"></script>
+		<script src="javascripts/Authentication.js"></script>
+		<script src="javascripts/angular-scroll.js"></script>
+        
+        <!-- Style Sheets -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css"> 
+		<link rel="stylesheet" href="stylesheets/creative.css" type="text/css">
+		<link rel="stylesheet" href="stylesheets/animate.min.css" type="text/css">
+		
+
+		<!-- Plugin JavaScript -->
+		<script src="javascripts/jquery.easing.min.js"></script>
+		<script src="javascripts/jquery.fittext.js"></script>
+		<script src="javascripts/wow.min.js"></script>
+		<script src="javascripts/creative.js"></script>
+		
+    </head>    
+    <body ng-app="app" id="page-top">
+		<nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="padding:20px">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+						<a class="page-scroll" href="#deliverable" du-smooth-scroll du-scrollspy>Deliverable</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#quality" du-smooth-scroll du-scrollspy>Quality</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#serviceLevel" du-smooth-scroll du-scrollspy>Service Level</a>
+					</li>		
+					<li>
+						<a class="page-scroll" href="#clientImpact" du-smooth-scroll du-scrollspy>Client Impact</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#clientSatisfaction" du-smooth-scroll du-scrollspy>Client Satisfaction</a>
+					</li>
+					<li>
+						  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+					</li>
+                </ul>
+            </div>
+	  
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>          
+	<div ng-view>
+	</div>        
+    </body>
+</html>     
