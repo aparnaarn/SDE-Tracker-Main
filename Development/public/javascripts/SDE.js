@@ -97,16 +97,15 @@ app.controller('mainController', function ($rootScope,$scope, $http,$location,$w
     	$scope.entry.account = $rootScope.account;
     	$scope.entry.projectName = $rootScope.projectName;
 
-    	Bootstrap.alert("Are you sure?");
 
     	console.log("posting to mongo");
-    	console.log("Entering SDE for: ",$rootScope.currentProject.teamdl);
+    	//console.log("Entering SDE for: ",$rootScope.currentProject.teamdl);
 
-        $http.post("/api/SDE", $scope.entry,$rootScope.currentProject.teamdl).success(function (response) {
+        /*$http.post("/api/SDE", $scope.entry,$rootScope.currentProject.teamdl).success(function (response) {
 			console.log(response);
  			$location.path('/login');
 			window.location.reload();
-		});
+		});*/
     };
 });
 
