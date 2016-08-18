@@ -29,9 +29,11 @@ app.config(function ($routeProvider) {
 		});
 });
 
-app.controller('mainController', function ($rootScope,$scope, $http,$location,$window) {	
+app.controller('mainController', function ($rootScope,$scope, $http,$location,$window,$timeout) {	
 
 	console.log($rootScope.coast,$rootScope.account,$rootScope.projectName,$rootScope.selectedWeek);
+
+	$scope.preview = {};
           
     $scope.clientSatisfaction = {
         satisfaction: {id: '1', name: 'Extremely Satisfied'},
@@ -91,14 +93,22 @@ app.controller('mainController', function ($rootScope,$scope, $http,$location,$w
 	teamdl: ''
     };
 
-    $scope.submit = function () {
-    	$scope.entry.weekOf = $rootScope.selectedWeek;
-    	$scope.entry.cluster = $rootScope.coast;
-    	$scope.entry.account = $rootScope.account;
-    	$scope.entry.projectName = $rootScope.projectName;
+    $scope.entry.weekOf = $rootScope.selectedWeek;
+    $scope.entry.cluster = $rootScope.coast;
+    $scope.entry.account = $rootScope.account;
+    $scope.entry.projectName = $rootScope.projectName;
 
+    console.log('Preview' + $scope.preview.weekOf);
+
+
+    $scope.submit = function () {  
+    	
+    		
+
+    	console.log('Preview 2' + $scope.preview.weekOf);
 
     	console.log("posting to mongo");
+
     	//console.log("Entering SDE for: ",$rootScope.currentProject.teamdl);
 
         /*$http.post("/api/SDE", $scope.entry,$rootScope.currentProject.teamdl).success(function (response) {

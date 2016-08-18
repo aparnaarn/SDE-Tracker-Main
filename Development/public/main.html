@@ -68,7 +68,7 @@
 			<label for="serviceType" class="control-label col-lg-3">Service Type</label>
 			<div class="col-lg-3">
 				<select id="serviceType" 
-						ng-model="serviceType.service" 
+						ng-model="entry.serviceType" 
 						ng-options="option.name for option in serviceType.availableOptions track by option.id" 
 						class="form-control">                  
 				</select>
@@ -279,7 +279,12 @@
             <h4 class="modal-title" id="myModalLabel">Confirm your Entry</h4>
           </div>
           <div class="modal-body">
-            ...
+            <p>Week Of : {{$scope.preview.weekOf}}</p>
+            <p>Project Name : {{$scope.preview.projectName}}</p>
+            <p>No. Of Deliverables : {{$scope.preview.noOfDeliverables}}</p>
+            <p>Deliverable Name : </p>
+            <p>Description : </p>
+            <p>General Comments : </p>            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
