@@ -268,7 +268,7 @@
 	</section>
 	<section class="container col-lg-12">
 		 <div class="col-lg-offset-5 col-lg-2">
-        	<button type="submit" class="btn btn-primary btn-xl wow" data-toggle="modal" data-target = "#myModal">Submit</button>
+        	<button type="button" class="btn btn-primary btn-xl wow" data-toggle="modal" data-target = "#myModal" ng-click="preview()">Submit</button>
     	</div>
 	</section>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -279,16 +279,16 @@
             <h4 class="modal-title" id="myModalLabel">Confirm your Entry</h4>
           </div>
           <div class="modal-body">
-            <p>Week Of : {{$scope.preview.weekOf}}</p>
-            <p>Project Name : {{$scope.preview.projectName}}</p>
-            <p>No. Of Deliverables : {{$scope.preview.noOfDeliverables}}</p>
-            <p>Deliverable Name : </p>
-            <p>Description : </p>
-            <p>General Comments : </p>            
+            <p>Week Of : {{$root.preview.weekOf}}</p>
+            <p>Project Name : {{$root.preview.projectName}}</p>
+            <p>No. Of Deliverables : {{$root.preview.noOfDeliverables}}</p>
+            <p>Deliverable Name : {{$root.preview.noOfDeliverables}}</p>
+            <p>Description : {{$root.preview.noOfDeliverables}}</p>
+            <p>General Comments : {{$root.preview.noOfDeliverables}}</p>            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
           </div>
         </div>
       </div>
