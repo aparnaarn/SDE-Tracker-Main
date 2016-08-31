@@ -47,7 +47,7 @@
 <div class="col-lg-12">
     <h3 class="text-center">Week ending {{$root.selectedWeek}} - {{$root.account}} {{$root.projectName}}</h3>
     <hr class="small">
-    <div class="col-lg-3"class="form-group">
+    <div class="col-lg-3" class="form-group">
         <div class='input-group date' id='datetimepicker1'>
             <input type='text' class="form-control" ng-model='$root.selectedWeek'/>
             <span class="input-group-addon">
@@ -282,9 +282,9 @@
             <p>Week Of : {{$root.preview.weekOf}}</p>
             <p>Project Name : {{$root.preview.projectName}}</p>
             <p>No. Of Deliverables : {{$root.preview.noOfDeliverables}}</p>
-            <p>Deliverable Name : {{$root.preview.noOfDeliverables}}</p>
-            <p>Description : {{$root.preview.noOfDeliverables}}</p>
-            <p>General Comments : {{$root.preview.noOfDeliverables}}</p>            
+            <p>Deliverable Name : {{$root.preview.deliverableName}}</p>
+            <p>Description : {{$root.preview.description}}</p>
+            <p>General Comments : {{$root.preview.generalComments}}</p>            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

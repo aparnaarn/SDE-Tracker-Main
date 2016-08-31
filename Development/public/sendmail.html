@@ -1,30 +1,49 @@
 
 
 <div id="MainWrap" class="container" ng-controller="sendmailController">
-<h2>{{$root.currentProject.account}} - {{$root.currentProject.team}}</h2>
 
-<div class="row" style="padding-bottom:4ex">
+    <div class="jumbotron">
 
-<h5>Select a Week</h5>
+        <h2>{{$root.currentProject.account}} - {{$root.currentProject.team}}</h2>
 
-<div  class="form-group">
-    <div class='input-group date' id='datetimepicker1'>
-        <input type='text' class="form-control" ng-model='entryWeek'/>
-        <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-        </span>
+        <h4>Select a Week</h4>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control" ng-model='entryWeek'/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        
+        <BUTTON class='btn btn-primary gradient btn-sm' id='getEntries' ng-click="getEntries()">Get Entries</BUTTON>
+
+        <script type="text/javascript">
+            $("#preview").hide();
+            $('#datetimepicker1').datepicker({
+            	dateFormat: 'dd-mm-yy',
+        		minDate: 1,
+                daysOfWeekDisabled: [0,1,2,3,4,6],
+                autoclose: true
+            });
+
+            $('#getEntries').click(function(){
+                $("#preview").show();
+            });
+        </script>    
     </div>
-</div>
 
-</div>
-<script type="text/javascript">
-    $('#datetimepicker1').datepicker({
-    	dateFormat: 'dd-mm-yy',
-		minDate: 1,
-        daysOfWeekDisabled: [0,1,2,3,4,6]
-    });
-</script>
+    <div class="jumbotron" id="preview">
+        <h4>Preview</h4>
+        <div ng-repeat="x in entries">
+            <p>Week Of : {{entryWeek}}</p>
+            <p>Project Name: {{$root.currentProject.team}}</p>
+            <p>Delivery Name : {{x.noOfDeliverables}}</p>
+            <p>Delivery Name : {{x.deliverableName}}</p>
+            <p>Delivery Name : {{x.description}}</p>
+            <p>Delivery Name : {{x.generalComments}}</p>
+        </div>    
 
-<BUTTON id='getEntries' ng-click="getEntries()" style="padding:0.7ex">Get Entries</BUTTON>
-
+        <BUTTON class='btn btn-success gradient btn-sm' id='sendmail' ng-click="sendmail()">Send Mail</BUTTON>
+    </div>
 </div>
