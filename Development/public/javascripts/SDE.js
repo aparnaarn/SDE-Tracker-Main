@@ -217,6 +217,7 @@ app.controller('loginController', function ($scope,$rootScope,$window,$location,
 app.controller('sendmailController', function ($scope,$rootScope,$window,$location,$http) {
 	var res;
 	console.log('send mail controller');
+
 	$scope.getEntries = function(){		
 		console.log('Getting Entries for ' + $rootScope.currentProject.team + ' - ' + $scope.entryWeek);
 		$http.get("/api/getEntries", {params:{"param1": $rootScope.currentProject.team, "param2": $scope.entryWeek}}).success(function (response) {
@@ -227,6 +228,11 @@ app.controller('sendmailController', function ($scope,$rootScope,$window,$locati
 			for (i in $scope.entries)	
 				console.log($scope.entries[i].deliverableName);
 		});
+	}
+
+	$scope.sendmail = function (){
+		$http.post()
+
 	}
 });
 
