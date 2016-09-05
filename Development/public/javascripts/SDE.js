@@ -102,6 +102,7 @@ app.controller('mainController', function ($rootScope,$scope, $http,$location,$w
 	    $scope.entry.cluster = $rootScope.coast;
 	    $scope.entry.account = $rootScope.account;
 	    $scope.entry.projectName = $rootScope.projectName;
+	    $scope.entry.
     	
     	console.log('In submit' + $scope.entry.noOfDeliverables)
 
@@ -126,6 +127,10 @@ app.controller('mainController', function ($rootScope,$scope, $http,$location,$w
 app.controller('loginController', function ($scope,$rootScope,$window,$location,$http) {
 	$rootScope.showBanner = true;
 	$rootScope.currentProject = {};
+
+	$rootScope.coast = "";
+	$rootScope.account = "";
+	$rootScope.projectName = "";
 
 	$scope.clusters = ['WC','EC','PP'];
 
@@ -217,21 +222,26 @@ app.controller('loginController', function ($scope,$rootScope,$window,$location,
 app.controller('sendmailController', function ($scope,$rootScope,$window,$location,$http) {
 	var res;
 	console.log('send mail controller');
+	$scope.entries;
 
-	$scope.getEntries = function(){		
+	$scope.getEntries = function(){
+		$scope.entries = [];	
 		console.log('Getting Entries for ' + $rootScope.currentProject.team + ' - ' + $scope.entryWeek);
 		$http.get("/api/getEntries", {params:{"param1": $rootScope.currentProject.team, "param2": $scope.entryWeek}}).success(function (response) {
 			console.log(response);
-			$scope.entries = [];
 			for (i in response)
 				$scope.entries.push(response[i]);
-			for (i in $scope.entries)	
-				console.log($scope.entries[i].deliverableName);
+			for (i in $scope.entries)
+				console.log(i);
 		});
 	}
 
 	$scope.sendmail = function (){
-		$http.post()
+		$http.post("/api/sendMail",$scope.entries).success(function(){
+			console.log("sentmail");
+			$location.path('/login');
+			window.location.reload();
+		});
 
 	}
 });

@@ -86,21 +86,16 @@ router.get('/getEntries',function(req,res){
 router.post('/sendMail',function(req,res){    
 
     var input = req.body;
-    var sendmail = input.teamdl;
-    console.log (sendmail);
-    var alldata;
+    console.log(input);
 
-    var text = 'Please find attached the weekly SDE Form for the week';
+    console.log(input[0].teamdl);
 
-    SDEEntry.find(function (err, s) {
-        if (err) {
-            console.log('Error getting data' + err);
-        }
-        console.log('inside find'+s);
-        alldata = s;
-    }); 
+    var text = 'Please find attached the SDE entries for the week\n\n';
 
-    console.log ('all data'+alldata);
+    for (i in input){
+        text += "Deliverable" + (i+1) +"\n";
+    }
+
 
     var body = JSON.stringify(alldata);
     console.log('body'+body);

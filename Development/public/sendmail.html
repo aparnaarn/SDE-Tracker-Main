@@ -36,6 +36,7 @@
     <div class="jumbotron" id="preview">
         <h4>Preview</h4>
         <div ng-repeat="x in entries">
+            <h3>Deliverable {{$index+1}}</h3>
             <p>Week Of : {{entryWeek}}</p>
             <p>Project Name: {{$root.currentProject.team}}</p>
             <p>Delivery Name : {{x.noOfDeliverables}}</p>
