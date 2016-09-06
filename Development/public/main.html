@@ -43,25 +43,33 @@
 
 <form class="form-horizontal" ng-submit="submit()">
 
-<!-- form start -->
-<div class="col-lg-12">
-    <h3 class="text-center">Week ending {{$root.selectedWeek}} - {{$root.account}} {{$root.projectName}}</h3>
-    <hr class="small">
-    <div class="col-lg-3" class="form-group">
-        <div class='input-group date' id='datetimepicker1'>
-            <input type='text' class="form-control" ng-model='$root.selectedWeek'/>
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
-    </div>
+    <!-- form start -->
+    <section>
+        <h3 class="text-center">Week ending {{$root.selectedWeek}} - {{$root.account}} {{$root.projectName}}</h3>
+        <hr class="small">
+        <div class = "centered">
+            <h4 class="col-lg-offset-3 col-lg-2 text-center">Select a Week - </h4>
+            <div class="col-lg-3" class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" ng-model='$root.selectedWeek'/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>        
+    </section>
+    <br>
+    <hr>
     <script type="text/javascript">
         $('#datetimepicker1').datepicker({
         	dateFormat: 'dd-mm-yy',
     		minDate: 1,
-            daysOfWeekDisabled: [0,1,2,3,4,6]
+            daysOfWeekDisabled: [0,1,2,3,4,6],
+            autoclose: true
         });
     </script>
+
 	<section id ="deliverable">
 		<h3 class="section-heading text-center">Deliverable</h3>		
 		<div class="form-group">

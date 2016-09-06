@@ -11,11 +11,12 @@
 ******************************************************/
 
 .btn {
-	padding: 5px 10px;
+	padding: 3px 8px;
 	border: 0 none;
-	font-weight: 700;
-	letter-spacing: 1px;
+	font-weight: 100;
+	letter-spacing: 0.5px;
 	text-transform: uppercase;
+	border-radius: 2px;
 }
 .btn:focus, .btn:active:focus, .btn.active:focus {
 	outline: 0 none;

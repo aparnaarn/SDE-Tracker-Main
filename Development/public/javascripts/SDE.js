@@ -93,7 +93,6 @@ app.controller('mainController', function ($rootScope,$scope, $http,$location,$w
 	teamdl: ''
     };
 
-    console.log('Preview' + $scope.preview.noOfDeliverables);
 
     $scope.preview = function () {
 
@@ -102,9 +101,9 @@ app.controller('mainController', function ($rootScope,$scope, $http,$location,$w
 	    $scope.entry.cluster = $rootScope.coast;
 	    $scope.entry.account = $rootScope.account;
 	    $scope.entry.projectName = $rootScope.projectName;
-	    $scope.entry.
+	    $scope.entry.teamdl = $rootScope.currentProject.teamdl;
     	
-    	console.log('In submit' + $scope.entry.noOfDeliverables)
+    	console.log('In submit' + $scope.entry.teamdl)
 
     	$rootScope.preview = $scope.entry;	
 
@@ -202,7 +201,6 @@ app.controller('loginController', function ($scope,$rootScope,$window,$location,
 	 	email = $scope.profile.getEmail();
 		if($.inArray(email, $scope.allowedlogins) != -1){
 			console.log("Email authorized")
-			valid = 1;
 			$scope.name = name;
 			console.log($scope.name);	
 	 		console.log("In changeView");
@@ -210,11 +208,23 @@ app.controller('loginController', function ($scope,$rootScope,$window,$location,
 		}
 		else{
 			console.log("Email not authorized");
+			window.alert('Your email is not authorized or not valid. Please sign-in using a different email id');
 		}	
     }
 
     $scope.sendMail = function (){
-    	$location.path('/sendmail');
+	 	console.log($scope.allowedlogins);
+    	email = $scope.profile.getEmail();
+    	if($.inArray(email, $scope.allowedlogins) != -1){
+			console.log("Email authorized")
+			$scope.name = name;
+			console.log($scope.name);
+    		$location.path('/sendmail');
+		}
+		else{
+			console.log("Email not authorized");
+			window.alert('Your email is not authorized or not valid. Please sign-in using a different email id');
+		}
     }    
 
 });

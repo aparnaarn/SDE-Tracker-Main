@@ -42,6 +42,8 @@ router.post('/SDE', function (req, resp) {
     entry.negativeReviews = input.negativeReviews;
     entry.negativeFeedback = input.negativeFeedback;
     entry.generalComments = input.generalComments;
+    entry.teamdl = input.teamdl;
+
     console.log('Entry: '+entry);
 
     entry.save(function (err, entry) {
@@ -86,18 +88,18 @@ router.get('/getEntries',function(req,res){
 router.post('/sendMail',function(req,res){    
 
     var input = req.body;
+    console.log('inside sendmail');
     console.log(input);
 
     console.log(input[0].teamdl);
+    sendmail = input[0].teamdl;
 
-    var text = 'Please find attached the SDE entries for the week\n\n';
+    var body = 'Please find attached the SDE entries for the week\n\n';
 
     for (i in input){
-        text += "Deliverable" + (i+1) +"\n";
+        body += "Deliverable" + (i+1) +"\n";
     }
 
-
-    var body = JSON.stringify(alldata);
     console.log('body'+body);
 
     var transporter = nodemailer.createTransport({
@@ -108,12 +110,16 @@ router.post('/sendMail',function(req,res){
         }
     });
 
+    console.log('transporter created');
+
     var mailOptions = {
         from: 'sdeweekly@gmail.com', // sender address
         to: sendmail, // list of receivers
         subject: 'SDE Weekly Entry', // Subject line
         text: body //content
     };
+
+    console.log('sending email');
 
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
