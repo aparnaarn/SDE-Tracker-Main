@@ -11,12 +11,15 @@
 ******************************************************/
 
 .btn {
-	padding: 3px 8px;
-	border: 0 none;
-	font-weight: 100;
-	letter-spacing: 0.5px;
-	text-transform: uppercase;
-	border-radius: 2px;
+	font-family: "Roboto",arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .21px;
+    margin-left: 6px;
+    margin-right: 6px;
+    vertical-align: top;
+    border-radius: 1px;
+    background: #FFFFFF;
 }
 .btn:focus, .btn:active:focus, .btn.active:focus {
 	outline: 0 none;
@@ -336,6 +339,16 @@
 /******************************************************
 	RAISED BUTTONS
 ******************************************************/
+
+.btn.raised {
+	box-shadow: 0 3px 0 0 #757575;
+}
+.btn.raised:active, .btn.raised.active {
+	background: #757575;
+	box-shadow: none;
+	margin-bottom: -3px;
+	margin-top: 3px;
+}
 
 .btn-primary.raised {
 	box-shadow: 0 3px 0 0 #007299;

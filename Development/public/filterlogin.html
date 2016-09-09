@@ -4,7 +4,7 @@
 
 <div id="MainWrap" class="container" ng-controller="loginController">
 	<div class="container col-lg-12" >
-		<div class="jumbotron text-center row centering">
+		<div id = 'innerWrap' class="jumbotron text-center row centering">
 			<h1 style = "padding-bottom:2ex">WEEKLY SDE TRACKER</h1>
 		
 		    <div class="form-group row text-center" style = "padding-bottom:2ex">                 
@@ -48,11 +48,11 @@
 			</div>		
 
 			<div class="row vertical-center-row" style="padding:2ex">
-				<BUTTON class = 'btn btn-danger raised' id='signout' onclick="signout()">Sign Out</BUTTON>
-				<BUTTON class = 'btn btn-primary raised' id='fillsde' ng-click="changeView()">Fill SDE</BUTTON>
-				<BUTTON class = 'btn btn-success raised' id='sendEmail' ng-click="sendMail()">Send Email</BUTTON>						
+				<BUTTON class = 'btn' id='signout' onClick="signout()">Sign Out</BUTTON>
+				<BUTTON class = 'btn' id='fillsde' ng-click="changeView()">Fill SDE</BUTTON>
+				<BUTTON class = 'btn' id='sendEmail' ng-click="sendMail()">Send Email</BUTTON>	
+				<BUTTON class = 'btn' id='remindEmail' ng-click="remind()">Remind</BUTTON>						
 			</div>		
-
 		</div>
 	</div>
 </div>
@@ -60,25 +60,35 @@
 <script type="text/javascript">
 
 	var profile;
-	var auth2;
+	var auth2;	
+	document.getElementById('fillsde').style.display='none'; 
+	document.getElementById("signout").style.display='none'; 
+	document.getElementById("sendEmail").style.display='none'; 
+	document.getElementById("remindEmail").style.display='none';
 
 	function signIn(googleUser){		
 		profile = googleUser.getBasicProfile();	
 		auth2 = gapi.auth2.getAuthInstance();
  		console.log('ID: ' + profile.getId()); 
 		angular.element(document.getElementById('MainWrap')).scope().setProfile(profile);	
-		document.getElementById('sinmsg').innerHTML = "Signed in as "+profile.getName();	
+		document.getElementById('sinmsg').innerHTML = "Signed in as "+profile.getName();
+		document.getElementById('fillsde').style.display='inline'; 
+		document.getElementById("signout").style.display='inline'; 
+		document.getElementById("sendEmail").style.display='inline'; 
+		document.getElementById("remindEmail").style.display='inline';	
 	}
 
 	function signout(){
 		console.log("in signout");
 		auth2.signOut().then(function(){
+	 		angular.element(document.getElementById('MainWrap')).scope().profile = null;
+	 		document.getElementById("sinmsg").innerHTML = "Click to sign-in with your google account";
+	 		document.getElementById('fillsde').style.display='none'; 
+	 		document.getElementById("signout").style.display='none'; 
+	 		document.getElementById("sendEmail").style.display='none'; 
+	 		document.getElementById("remindEmail").style.display='none';
  			console.log("singedout");
  		});
- 		angular.element(document.getElementById('MainWrap')).scope().profile = NULL;
- 		document.getElementById('sinmsg').innerHTML = "Click to sign-in with your google account";
- 		document.getElementById('fillsde').style.display='none'; 
- 		document.getElementById("signout").style.display='none';
  	}
 
 	window.onbeforeunload = function(e){

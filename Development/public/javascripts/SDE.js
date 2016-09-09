@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'duScroll','ui.bootstrap']);
+var app = angular.module('app', ['ngRoute', 'duScroll']);
 
 app.config(function ($routeProvider) {
 	$routeProvider
@@ -196,8 +196,14 @@ app.controller('loginController', function ($scope,$rootScope,$window,$location,
 		$scope.profile = profile;
 	}
 
-	 $scope.changeView = function(profile){
-	 	console.log($scope.allowedlogins);
+	 $scope.changeView = function(){
+	 	if($scope.allowedlogins.length == 0){
+    		console.log('team not selected');
+    		$('#alertmsg1').remove();
+    		$('<div id="alertmsg1" class="alert alert-danger" style="margin-top:2ex">Please select the team first.</div>').hide().appendTo("#innerWrap");
+    		$('#alertmsg1').fadeIn('slow').delay(5000).fadeOut('slow');
+    		return;
+    	}
 	 	email = $scope.profile.getEmail();
 		if($.inArray(email, $scope.allowedlogins) != -1){
 			console.log("Email authorized")
@@ -208,12 +214,21 @@ app.controller('loginController', function ($scope,$rootScope,$window,$location,
 		}
 		else{
 			console.log("Email not authorized");
-			window.alert('Your email is not authorized or not valid. Please sign-in using a different email id');
+    		$('#alertmsg2').remove();
+    		$('<div id="alertmsg2" class="alert alert-danger" style="margin-top:2ex">Please use an authorized email.</div>').hide().appendTo("#innerWrap");
+    		$('#alertmsg2').fadeIn('slow').delay(5000).fadeOut('slow');
+    		return;
 		}	
     }
 
     $scope.sendMail = function (){
-	 	console.log($scope.allowedlogins);
+    	if($scope.allowedlogins.length == 0){
+    		console.log('team not selected');
+    		$('#alertmsg1').remove();
+    		$('<div id="alertmsg1" class="alert alert-danger" style="margin-top:2ex">Please select the team first.</div>').hide().appendTo("#innerWrap");
+    		$('#alertmsg1').fadeIn('slow').delay(3000).fadeOut('slow');
+    		return;
+    	}
     	email = $scope.profile.getEmail();
     	if($.inArray(email, $scope.allowedlogins) != -1){
 			console.log("Email authorized")
@@ -223,8 +238,17 @@ app.controller('loginController', function ($scope,$rootScope,$window,$location,
 		}
 		else{
 			console.log("Email not authorized");
-			window.alert('Your email is not authorized or not valid. Please sign-in using a different email id');
+    		$('#alertmsg2').remove();
+    		$('<div id="alertmsg2" class="alert alert-danger" style="margin-top:2ex">Please use an authorized email.</div>').hide().appendTo("#innerWrap");
+    		$('#alertmsg2').fadeIn('slow').delay(5000).fadeOut('slow');
+    		return;
 		}
+    }
+
+    $scope.signout = function(){}
+
+    $scope.remind = function(){
+
     }    
 
 });
