@@ -1,13 +1,24 @@
 
 body{    
-    background-image :url(../images/img3.jpg);
+    background-image :url(../images/bg4.jpg);
     background-repeat:no-repeat;
     background-size:cover;
+    background-color: #BBB;
     padding-top:50px;
+    color: #222;
 }
 
 .jumbotron{
     background-color: transparent;
+}
+
+.abcRioButtonContents{
+    color: #111;
+}
+
+::selection {
+    color: #bbb; 
+    background: #555;
 }
 
 
@@ -15,7 +26,7 @@ body{
     font-family:"Roboto",arial,sans-serif;
     font-size: 13px;
     font-weight: 500;
-    color: #757575;
+    color: #444;
     letter-spacing: .21px;
     margin-left: 6px;
     margin-right: 6px;

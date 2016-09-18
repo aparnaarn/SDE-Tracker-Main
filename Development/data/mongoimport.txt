@@ -1,0 +1,1 @@
+mongoimport -d SDE -c teamdetails --type csv --file "C:\Users\Shiva\Desktop\SDE-tracker-v-2\data\teamdata.csv" --headerline
