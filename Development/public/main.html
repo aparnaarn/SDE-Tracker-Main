@@ -1,5 +1,5 @@
 
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="padding:20px">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style ="padding-top: 28px">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -41,15 +41,15 @@
 <!-- side navigation -->
 
 
-<form class="form-horizontal" ng-submit="submit()">
+<form class="form-horizontal" ng-submit="submit()" style = "margin-top: 100px;">
 
     <!-- form start -->
-    <section>
+    <section class="center">
         <h3 class="text-center">Week ending {{$root.selectedWeek}} - {{$root.account}} {{$root.projectName}}</h3>
         <hr class="small">
         <div class = "centered">
-            <h4 class="col-lg-offset-3 col-lg-2 text-center">Select a Week - </h4>
-            <div class="col-lg-3" class="form-group">
+            <h4 class="col-lg-offset-1 col-lg-2 text-center">Select a Week - </h4>
+            <div class="col-lg-2" class="form-group">
                 <div class='input-group date' id='datetimepicker1'>
                     <input type='text' class="form-control" ng-model='$root.selectedWeek'/>
                     <span class="input-group-addon">
@@ -58,6 +58,24 @@
                 </div>
             </div>
         </div>        
+        <div>
+        <h4 class="col-lg-offset-2 col-lg-2">No. Of Deliverables</h4>
+            <p>
+            </p><div class="input-group col-lg-2">
+              <span class="input-group-btn">
+                  <button type="button" class="btn btn-number"  data-type="minus" data-field="quant[2]">
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+              </span>
+              <input type="text" name="quant[2]" class="form-control input-number" value="1" min="1" max="100">
+              <span class="input-group-btn">
+                  <button type="button" class="btn btn-number" data-type="plus" data-field="quant[2]">
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+              </span>
+            </div>
+            <p></p>
+        </div>
     </section>
     <br>
     <hr>
@@ -94,14 +112,6 @@
 				<textarea ng-model="entry.description" rows="2" class="form-control" id="deliverableDescription" placeholder="Deliverable Description/Status"></textarea>
 			</div>
 		</div>
-
-
-		<div class="form-group">
-			<label for="noOfDeliverables" class="control-label col-lg-3">No of Deliverables</label>
-			<div class="col-lg-3">
-				<input ng-model="entry.noOfDeliverables" type="text" class="form-control" id="noOfDeliverables" placeholder="Number of Deliverables"/>
-			</div>        
-		</div> 
 	</section>
 	<hr>
 	
@@ -274,8 +284,8 @@
         </div>
     </div>   
 	</section>
-	<section class="container col-lg-12">
-		 <div class="col-lg-offset-5 col-lg-2">
+	<section class="container col-lg-6">
+		 <div class="col-lg-offset-11 col-lg-2">
         	<button type="button" class="btn btn-primary btn-xl wow" data-toggle="modal" data-target = "#myModal" ng-click="preview()">Submit</button>
     	</div>
 	</section>
@@ -301,8 +311,6 @@
         </div>
       </div>
     </div>
-    </body>
-</div>	
 	<section id="footer" class="container col-lg-12 bg-dark">
 		<div class="col-lg-12" style="padding:35px">
 		</div>

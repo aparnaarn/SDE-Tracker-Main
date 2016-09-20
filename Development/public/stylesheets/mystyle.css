@@ -1,13 +1,17 @@
 
 body{    
-    background-image :url(../images/img3.jpg);
+    //background-image :url(../images/img3.jpg);
     background-repeat:no-repeat;
     background-size:cover;
     padding-top:50px;
 }
 
 .jumbotron{
-    background-color: transparent;
+    background-color: #ddd;
+}
+
+.page-scroll, a{
+    color: #333;
 }
 
 
@@ -39,7 +43,8 @@ body{
 .navbar-default {
     border-color: rgba(34,34,34,.05);
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
-    background-color: #fff;
+    background-color: #333;
+    color: red;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
