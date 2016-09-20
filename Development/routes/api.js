@@ -48,10 +48,10 @@ router.post('/SDE', function (req, resp) {
 
     entry.save(function (err, entry) {
         if (err) {
-            return resp.send(500, err);
+            return resp.status(200).send(err);
         }
         console.log('saved to mongo');
-        return resp.json(entry);
+        return resp.status(200).json(entry);
     });
 
 });
@@ -101,6 +101,7 @@ router.post('/sendMail',function(req,res){
     }
 
     console.log('body'+body);
+    console.log(sendmail);
 
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
